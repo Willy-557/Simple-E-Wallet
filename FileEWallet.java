@@ -8,11 +8,11 @@
 import java.util.Scanner;
 import java.util.HashMap;
 
-class akun {
+class Akun {
     String namaPemilik;
     double saldoPemilik;
 
-    public akun(String namaPemilik, int saldoPemilik) {
+    public Akun(String namaPemilik, int saldoPemilik) {
         this.namaPemilik = namaPemilik;
         this.saldoPemilik = saldoPemilik;
     }
@@ -34,11 +34,11 @@ class akun {
         this.saldoPemilik += jumlah;
     }
 
-    public void transferAntarRekening (akun nomorRekeningTf, int uangTf){
-        if (uangTf < this.saldoPemilik){
+    public void transferAntarRekening (Akun nomorRekeningTf, int uangTf){
+        if (uangTf <= this.saldoPemilik){
             this.saldoPemilik -= uangTf;
             nomorRekeningTf.topUp(uangTf);
-            System.out.println("\nBerhasil melakukan transfer sebesar Rp " + uangTf + " ke Rekening a/n. " + nomorRekeningTf + ".");
+            System.out.println("\nBerhasil melakukan transfer sebesar Rp " + uangTf + " ke Rekening a/n. " + nomorRekeningTf.namaPemilik + ".");
         }
         else {
             System.out.println("\nTidak bisa mentransfer dikarenakan saldo kurang!");
@@ -49,7 +49,7 @@ class akun {
 public class FileEWallet {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        HashMap <Integer, akun> dataCustomer = new HashMap<>();
+        HashMap <Integer, Akun> dataCustomer = new HashMap<>();
 
         while (true){
             System.out.println("\n===========");
@@ -76,7 +76,7 @@ public class FileEWallet {
                         continue;
                     }
                     else {
-                        akun ambilNama = dataCustomer.get(nomorRekening);
+                        Akun ambilNama = dataCustomer.get(nomorRekening);
                         ambilNama.tampilkanPemilik();
                         
                         while (true){
@@ -102,7 +102,7 @@ public class FileEWallet {
                                         System.out.print("\nMasukkan uang yang ingin di-top up: ");
                                         int saldoDariLuar = scanner.nextInt();
 
-                                        akun tambahDataSaldo = dataCustomer.get(nomorRekening);
+                                        Akun tambahDataSaldo = dataCustomer.get(nomorRekening);
                                         if (saldoDariLuar < 0) {
                                             System.out.println("\nSaldo yang di-topup kan tidak boleh kurang dari 0 atau 0");
                                             break;
@@ -115,7 +115,7 @@ public class FileEWallet {
                                         
 
                                     case 2:
-                                        akun lihatDataCustomer = dataCustomer.get(nomorRekening);
+                                        Akun lihatDataCustomer = dataCustomer.get(nomorRekening);
                                         lihatDataCustomer.cekSaldo();
                                         break;
                                     
@@ -128,8 +128,8 @@ public class FileEWallet {
                                             break;
                                         }
                                         else {
-                                            akun dataAkunTf = dataCustomer.get(nomorRekeningTf);
-                                            akun dataAkunAsli = dataCustomer.get(nomorRekening);
+                                            Akun dataAkunTf = dataCustomer.get(nomorRekeningTf);
+                                            Akun dataAkunAsli = dataCustomer.get(nomorRekening);
 
                                             System.out.println("\nNo rekening : " + nomorRekeningTf);
                                             dataAkunTf.tampilkanNama();
@@ -156,7 +156,7 @@ public class FileEWallet {
                     String namaBaru = scanner.nextLine();
 
                     int saldoBaru = 0;
-                    akun akunBaru = new akun(namaBaru, saldoBaru);
+                    Akun akunBaru = new Akun(namaBaru, saldoBaru);
 
                     if (dataCustomer.containsKey(noRek)) {
                         System.out.println("\nNo rekening yang anda input sudah ada di dalam sistem, silahkan ganti Nomor Rekeningnya atau langsung Log In!");
