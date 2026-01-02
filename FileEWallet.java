@@ -70,10 +70,11 @@ public class FileEWallet {
                                 int choice = scanner.nextInt();
 
                                 if (choice == 4) {
-                                    System.out.println("Terimakasih!");
+                                    System.out.println("\nTerimakasih!");
+                                    break;
                                 }
                                 else if (choice > 4 || choice < 0) {
-                                    System.out.println("Masukkan antara menu 1 sampai menu 4!");
+                                    System.out.println("\nMasukkan antara menu 1 sampai menu 4!");
                                     continue;
                                 }
                                 else {
