@@ -80,13 +80,19 @@ public class FileEWallet {
                                 else {
                                     switch (choice) {
                                         case 1:
-                                            System.out.print("Masukkan uang yang ingin di-top up: ");
+                                            System.out.print("\nMasukkan uang yang ingin di-top up: ");
                                             int saldoDariLuar = scanner.nextInt();
 
                                             akun tambahDataSaldo = dataCustomer.get(nomorRekening);
-                                            tambahDataSaldo.topUp(saldoDariLuar);
-                                            System.out.println("Saldo berhasil di-tambahkan!");
-                                            break;
+                                            if (saldoDariLuar < 0) {
+                                                System.out.println("Saldo tidak boleh kurang dari 0 atau 0");
+                                            }
+                                            else {
+                                                tambahDataSaldo.topUp(saldoDariLuar);
+                                                System.out.println("\nSaldo berhasil di-tambahkan!");
+                                                break;
+                                            }
+                                            
 
                                         case 2:
                                             akun lihatDataCustomer = dataCustomer.get(nomorRekening);
