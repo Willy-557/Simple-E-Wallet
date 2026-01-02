@@ -23,6 +23,10 @@ class akun {
         System.out.println("Saldo Rekening : " + this.saldoPemilik);
     }
 
+    void tampilkanPemilik () {
+        System.out.println("\nSelamat datang '" + this.namaPemilik + "'!");
+    }
+
     public void topUp (int jumlah){
         this.saldoPemilik += jumlah;
     }
@@ -59,8 +63,11 @@ public class FileEWallet {
                             break;
                         }
                         else {
+                            akun ambilNama = dataCustomer.get(nomorRekening);
+                            ambilNama.tampilkanPemilik();
+                            
+
                             while (true){
-                                System.out.println("\nSelamat datang!");
                                 System.out.println("\n=== E-Wallet ===");
                                 System.out.println("1. Topup Saldo");
                                 System.out.println("2. Cek Saldo");
@@ -85,7 +92,8 @@ public class FileEWallet {
 
                                             akun tambahDataSaldo = dataCustomer.get(nomorRekening);
                                             if (saldoDariLuar < 0) {
-                                                System.out.println("Saldo tidak boleh kurang dari 0 atau 0");
+                                                System.out.println("\nSaldo yang di-topup kan tidak boleh kurang dari 0 atau 0");
+                                                break;
                                             }
                                             else {
                                                 tambahDataSaldo.topUp(saldoDariLuar);
@@ -100,27 +108,32 @@ public class FileEWallet {
                                     }
                                 }
                             }
-                            
-
-
-
                         }
                         
                     case 2:
-                        System.out.print("\nMasukkan No Rekening Baru: ");
-                        int noRek = scanner.nextInt();
+                        while (true) {
+                            System.out.print("\nMasukkan No Rekening Baru: ");
+                            int noRek = scanner.nextInt();
 
-                        scanner.nextLine();
-                        System.out.print("Masukkan nama: ");
-                        String namaBaru = scanner.nextLine();
+                            scanner.nextLine();
+                            System.out.print("Masukkan nama: ");
+                            String namaBaru = scanner.nextLine();
 
-                        int saldoBaru = 0;
+                            int saldoBaru = 0;
+                            akun akunBaru = new akun(namaBaru, saldoBaru);
 
-                        akun akunBaru = new akun(namaBaru, saldoBaru);
-
-                        dataCustomer.put(noRek, akunBaru);
-
-                        System.out.println("\nBerhasil membuat rekening a/n. '" + namaBaru + "'.");
+                            if (dataCustomer.containsKey(noRek)) {
+                                System.out.println("\nNo rekening yang anda input sudah ada di dalam sistem, silahkan ganti Nomor Rekeningnya atau langsung Log In!");
+                                continue;
+                            }
+                            else {
+                                dataCustomer.put(noRek, akunBaru);
+                                System.out.println("\nBerhasil membuat rekening a/n. '" + namaBaru + "'.");
+                                break;
+                            }
+                        }
+                        
+                        
                 }
             }
         }
