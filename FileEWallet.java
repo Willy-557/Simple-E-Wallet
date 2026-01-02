@@ -60,12 +60,37 @@ public class FileEWallet {
                             break;
                         }
                         else {
-                            System.out.println("\nSelamat datang!");
-                            System.out.println("\n=== E-Wallet ===");
-                            System.out.println("1. Topup Saldo");
-                            System.out.println("2. Cek Saldo");
-                            System.out.println("3. Transfer antar rekening");
-                            System.out.println("4. ");
+                            while (true){
+                                System.out.println("\nSelamat datang!");
+                                System.out.println("\n=== E-Wallet ===");
+                                System.out.println("1. Topup Saldo");
+                                System.out.println("2. Cek Saldo");
+                                System.out.println("3. Transfer antar rekening");
+                                System.out.println("4. Keluar");
+                                System.out.print(">> ");
+                                int choice = scanner.nextInt();
+
+                                if (choice == 4) {
+                                    System.out.println("Terimakasih!");
+                                }
+                                else if (choice > 4 || choice < 0) {
+                                    System.out.println("Masukkan antara menu 1 sampai menu 4!");
+                                    continue;
+                                }
+                                else {
+                                    switch (choice) {
+                                        case 1:
+                                            
+                                            break;
+                                    
+                                        
+                                    }
+                                }
+                            }
+                            
+
+
+
                         }
                         
                     case 2:
