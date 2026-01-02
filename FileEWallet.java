@@ -35,8 +35,11 @@ class akun {
     }
 
     public void transferAntarRekening (int uangTf){
-        if (uangTf > this.saldoPemilik){
+        if (uangTf < this.saldoPemilik){
             this.saldoPemilik -= uangTf;
+        }
+        else {
+            System.out.println("Tidak bisa mentransfer dikarenakan saldo kurang!");
         }
     }
 }
@@ -112,6 +115,7 @@ public class FileEWallet {
                                     case 2:
                                         akun lihatDataCustomer = dataCustomer.get(nomorRekening);
                                         lihatDataCustomer.cekSaldo();
+                                        break;
                                     
                                     case 3:
                                         System.out.print("\nMasukkan no rekening yang ingin di-transfer: ");
@@ -119,6 +123,7 @@ public class FileEWallet {
 
                                         if (!dataCustomer.containsKey(nomorRekeningTf)){
                                             System.out.println("\nNo rekening '" + nomorRekeningTf + "' tidak ada di dalam sistem");
+                                            break;
                                         }
                                         else {
                                             akun dataAkunTf = dataCustomer.get(nomorRekeningTf);
@@ -133,8 +138,8 @@ public class FileEWallet {
                                             dataAkunAsli.transferAntarRekening(saldoTf);
 
                                             dataAkunTf.topUp(saldoTf);
-                                            System.out.println("Berhasil melakukan transfer sebesar Rp " + saldoTf + "ke Rekening a/n. " + nomorRekeningTf + ".");
-                                            
+                                            System.out.println("\nBerhasil melakukan transfer sebesar Rp " + saldoTf + " ke Rekening a/n. " + nomorRekeningTf + ".");
+                                            break;
                                         }
                                 }
                             }
