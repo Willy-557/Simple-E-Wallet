@@ -10,12 +10,10 @@ import java.util.HashMap;
 
 class akun {
             String namaPemilik;
-            int pinPemilik;
             double saldoPemilik;
 
-            public akun(String namaPemilik, int pinPemilik, double saldoPemilik) {
+            public akun(String namaPemilik, double saldoPemilik) {
                 this.namaPemilik = namaPemilik;
-                this.pinPemilik = pinPemilik;
                 this.saldoPemilik = saldoPemilik;
 
             }
@@ -25,10 +23,10 @@ class akun {
                 System.out.println("Saldo Rekening : " + this.saldoPemilik);
             }
 
-            int topUp (double jumlah){
-                double saldoPemilik = saldoPemilik + jumlah;
-                return saldoPemilik;
-            }
+            // int topUp (double jumlah){
+            //     double saldoPemilik = saldoPemilik + jumlah;
+            //     return saldoPemilik;
+            // }
         }
 
 public class FileEWallet {
@@ -37,35 +35,54 @@ public class FileEWallet {
         HashMap <Integer, akun> dataCustomer = new HashMap<>();
 
         while (true){
-            System.out.println("==================");
+            System.out.println("\n===========");
             System.out.println("1. Log In");
             System.out.println("2. Sign In");
+            System.out.println("3. Keluar");
+            System.out.print(">> ");
             int opsi = scanner.nextInt();
 
-            if (opsi > 2 || opsi < 0) {
-                System.out.println("Silahkan memilih antara menu 1 dan menu 2");
+            if (opsi == 3) {
+                System.out.println("\nTerimakasih!");
+                break;
+            }
+            else if (opsi > 3 || opsi < 0) {
+                System.out.println("\nSilahkan memilih antara menu 1 dan menu 2");
             }
             else {
                 switch (opsi) {
                     case 1:
-                        System.out.print("Masukkan no rekening: ");
+                        System.out.print("\nMasukkan no rekening: ");
                         int nomorRekening = scanner.nextInt();
 
                         if (!dataCustomer.containsKey(nomorRekening)){
-                            System.out.println("No Rekening yang anda masukkan belum dibuat, silahkan buat terlebih dahulu!");
+                            System.out.println("\nNo Rekening yang anda masukkan belum dibuat, silahkan buat terlebih dahulu!");
                             break;
                         }
                         else {
-                            System.out.println("=== E-Wallet ===");
+                            System.out.println("\nSelamat datang!");
+                            System.out.println("\n=== E-Wallet ===");
                             System.out.println("1. Topup Saldo");
                             System.out.println("2. Cek Saldo");
                             System.out.println("3. Transfer antar rekening");
                             System.out.println("4. ");
                         }
                         
-                
-                    default:
-                        break;
+                    case 2:
+                        System.out.print("\nMasukkan No Rekening Baru: ");
+                        int noRek = scanner.nextInt();
+
+                        scanner.nextLine();
+                        System.out.print("Masukkan nama: ");
+                        String namaBaru = scanner.nextLine();
+
+                        int saldoBaru = 0;
+
+                        akun akunBaru = new akun(namaBaru, saldoBaru);
+
+                        dataCustomer.put(noRek, akunBaru);
+
+                        System.out.println("\nBerhasil membuat rekening a/n. '" + namaBaru + "'.");
                 }
             }
         }
