@@ -36,39 +36,38 @@ public class FileEWallet {
         Scanner scanner = new Scanner(System.in);
         HashMap <Integer, akun> dataCustomer = new HashMap<>();
 
-        System.out.println("==================");
-        System.out.println("1. Log In");
-        System.out.println("2. Sign In");
-        int opsi = scanner.nextInt();
+        while (true){
+            System.out.println("==================");
+            System.out.println("1. Log In");
+            System.out.println("2. Sign In");
+            int opsi = scanner.nextInt();
 
-        if (opsi > 2 || opsi < 0) {
-            System.out.println("Silahkan memilih antara menu 1 dan menu 2");
-        }
-        else {
-            switch (opsi) {
-                case 1:
-                    System.out.print("Masukkan no rekening: ");
-                    int nomorRekening = scanner.nextInt();
+            if (opsi > 2 || opsi < 0) {
+                System.out.println("Silahkan memilih antara menu 1 dan menu 2");
+            }
+            else {
+                switch (opsi) {
+                    case 1:
+                        System.out.print("Masukkan no rekening: ");
+                        int nomorRekening = scanner.nextInt();
 
-                    if (!dataCustomer.containsKey(nomorRekening)){
-                        System.out.println("No Rekening yang anda masukkan belum dibuat, silahkan buat terlebih dahulu!");
+                        if (!dataCustomer.containsKey(nomorRekening)){
+                            System.out.println("No Rekening yang anda masukkan belum dibuat, silahkan buat terlebih dahulu!");
+                            break;
+                        }
+                        else {
+                            System.out.println("=== E-Wallet ===");
+                            System.out.println("1. Topup Saldo");
+                            System.out.println("2. Cek Saldo");
+                            System.out.println("3. Transfer antar rekening");
+                            System.out.println("4. ");
+                        }
+                        
+                
+                    default:
                         break;
-                    }
-                    else {
-                        System.out.println("=== E-Wallet ===");
-                        System.out.println("1. Topup Saldo");
-                        System.out.println("2. Cek Saldo");
-                        System.out.println("3. Transfer antar rekening");
-                        System.out.println("4. ");
-                    }
-                    
-            
-                default:
-                    break;
+                }
             }
         }
-
-        
-
     }
 }
