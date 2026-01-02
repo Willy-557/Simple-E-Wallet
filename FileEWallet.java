@@ -34,12 +34,14 @@ class akun {
         this.saldoPemilik += jumlah;
     }
 
-    public void transferAntarRekening (int uangTf){
+    public void transferAntarRekening (akun nomorRekeningTf, int uangTf){
         if (uangTf < this.saldoPemilik){
             this.saldoPemilik -= uangTf;
+            nomorRekeningTf.topUp(uangTf);
+            System.out.println("\nBerhasil melakukan transfer sebesar Rp " + uangTf + " ke Rekening a/n. " + nomorRekeningTf + ".");
         }
         else {
-            System.out.println("Tidak bisa mentransfer dikarenakan saldo kurang!");
+            System.out.println("\nTidak bisa mentransfer dikarenakan saldo kurang!");
         }
     }
 }
@@ -135,15 +137,12 @@ public class FileEWallet {
                                             System.out.print("\nMasukkan saldo yang ingin di-transfer: ");
                                             int saldoTf = scanner.nextInt();
 
-                                            dataAkunAsli.transferAntarRekening(saldoTf);
+                                            dataAkunAsli.transferAntarRekening(dataAkunTf, saldoTf);
 
-                                            dataAkunTf.topUp(saldoTf);
-                                            System.out.println("\nBerhasil melakukan transfer sebesar Rp " + saldoTf + " ke Rekening a/n. " + nomorRekeningTf + ".");
                                             break;
                                         }
                                 }
                             }
-                            
                         }
                     }
                 }
