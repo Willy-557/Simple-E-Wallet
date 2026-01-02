@@ -8,13 +8,7 @@
 import java.util.Scanner;
 import java.util.HashMap;
 
-public class FileEWallet {
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        HashMap <Integer, akun> dataCustomer = new HashMap<>();
-
-        class akun {
+class akun {
             String namaPemilik;
             int pinPemilik;
             double saldoPemilik;
@@ -26,10 +20,31 @@ public class FileEWallet {
 
             }
 
-            int topUp (){
-                double tambahSaldo = saldoPemilik + saldoLuar;
-                return tambahSaldo;
+            void cekSaldo() {
+                System.out.println("Nama Rekening : " + this.namaPemilik);
+                System.out.println("Saldo Rekening : " + this.saldoPemilik);
+            }
+
+            int topUp (double jumlah){
+                double saldoPemilik = saldoPemilik + jumlah;
+                return saldoPemilik;
             }
         }
+
+public class FileEWallet {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        HashMap <Integer, akun> dataCustomer = new HashMap<>();
+
+        System.out.println("==================");
+        System.out.println("1. Masukkan no rekening");
+        Sys
+
+        System.out.println("=== E-Wallet ===");
+        System.out.println("1. Topup Saldo");
+        System.out.println("2. Cek Saldo");
+        System.out.println("3. Transfer antar rekening");
+        System.out.println("4. ");
+
     }
 }
