@@ -36,7 +36,7 @@ class akun {
 
     public void transferAntarRekening (int uangTf){
         if (uangTf > this.saldoPemilik){
-            
+            this.saldoPemilik -= uangTf;
         }
     }
 }
@@ -121,15 +121,21 @@ public class FileEWallet {
                                             System.out.println("\nNo rekening '" + nomorRekeningTf + "' tidak ada di dalam sistem");
                                         }
                                         else {
-                                            akun dataAkun = dataCustomer.get(nomorRekeningTf);
+                                            akun dataAkunTf = dataCustomer.get(nomorRekeningTf);
+                                            akun dataAkunAsli = dataCustomer.get(nomorRekening);
+
                                             System.out.println("\nNo rekening : " + nomorRekeningTf);
-                                            dataAkun.tampilkanNama();
+                                            dataAkunTf.tampilkanNama();
+
                                             System.out.print("\nMasukkan saldo yang ingin di-transfer: ");
                                             int saldoTf = scanner.nextInt();
 
+                                            dataAkunAsli.transferAntarRekening(saldoTf);
+
+                                            dataAkunTf.topUp(saldoTf);
+                                            System.out.println("Berhasil melakukan transfer sebesar Rp " + saldoTf + "ke Rekening a/n. " + nomorRekeningTf + ".");
                                             
                                         }
-
                                 }
                             }
                             
