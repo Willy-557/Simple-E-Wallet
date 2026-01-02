@@ -18,7 +18,7 @@ class akun {
     }
 
     void cekSaldo() {
-        System.out.println("Nama Rekening : " + this.namaPemilik);
+        System.out.println("\nNama Rekening : " + this.namaPemilik);
         System.out.println("Saldo Rekening : " + this.saldoPemilik);
     }
 
@@ -26,8 +26,18 @@ class akun {
         System.out.println("\nSelamat datang '" + this.namaPemilik + "'!");
     }
 
+    void tampilkanNama(){
+        System.out.println("Nama Rekening : " + this.namaPemilik);
+    }
+
     public void topUp (int jumlah){
         this.saldoPemilik += jumlah;
+    }
+
+    public void transferAntarRekening (int uangTf){
+        if (uangTf > this.saldoPemilik){
+            
+        }
     }
 }
 
@@ -102,6 +112,24 @@ public class FileEWallet {
                                     case 2:
                                         akun lihatDataCustomer = dataCustomer.get(nomorRekening);
                                         lihatDataCustomer.cekSaldo();
+                                    
+                                    case 3:
+                                        System.out.print("\nMasukkan no rekening yang ingin di-transfer: ");
+                                        int nomorRekeningTf = scanner.nextInt();
+
+                                        if (!dataCustomer.containsKey(nomorRekeningTf)){
+                                            System.out.println("\nNo rekening '" + nomorRekeningTf + "' tidak ada di dalam sistem");
+                                        }
+                                        else {
+                                            akun dataAkun = dataCustomer.get(nomorRekeningTf);
+                                            System.out.println("\nNo rekening : " + nomorRekeningTf);
+                                            dataAkun.tampilkanNama();
+                                            System.out.print("\nMasukkan saldo yang ingin di-transfer: ");
+                                            int saldoTf = scanner.nextInt();
+
+                                            
+                                        }
+
                                 }
                             }
                             
