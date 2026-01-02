@@ -15,7 +15,6 @@ class akun {
     public akun(String namaPemilik, int saldoPemilik) {
         this.namaPemilik = namaPemilik;
         this.saldoPemilik = saldoPemilik;
-
     }
 
     void cekSaldo() {
@@ -53,86 +52,83 @@ public class FileEWallet {
                 System.out.println("\nSilahkan memilih antara menu 1 dan menu 2");
             }
             else {
-                switch (opsi) {
-                    case 1:
-                        System.out.print("\nMasukkan no rekening: ");
-                        int nomorRekening = scanner.nextInt();
+                if (opsi == 1) {
+                    System.out.print("\nMasukkan no rekening: ");
+                    int nomorRekening = scanner.nextInt();
 
-                        if (!dataCustomer.containsKey(nomorRekening)){
-                            System.out.println("\nNo Rekening yang anda masukkan belum dibuat / salah");
-                            break;
-                        }
-                        else {
-                            akun ambilNama = dataCustomer.get(nomorRekening);
-                            ambilNama.tampilkanPemilik();
-                            
-
-                            while (true){
-                                System.out.println("\n=== E-Wallet ===");
-                                System.out.println("1. Topup Saldo");
-                                System.out.println("2. Cek Saldo");
-                                System.out.println("3. Transfer antar rekening");
-                                System.out.println("4. Keluar");
-                                System.out.print(">> ");
-                                int choice = scanner.nextInt();
-
-                                if (choice == 4) {
-                                    System.out.println("\nTerimakasih!");
-                                    break;
-                                }
-                                else if (choice > 4 || choice < 0) {
-                                    System.out.println("\nMasukkan antara menu 1 sampai menu 4!");
-                                    continue;
-                                }
-                                else {
-                                    switch (choice) {
-                                        case 1:
-                                            System.out.print("\nMasukkan uang yang ingin di-top up: ");
-                                            int saldoDariLuar = scanner.nextInt();
-
-                                            akun tambahDataSaldo = dataCustomer.get(nomorRekening);
-                                            if (saldoDariLuar < 0) {
-                                                System.out.println("\nSaldo yang di-topup kan tidak boleh kurang dari 0 atau 0");
-                                                break;
-                                            }
-                                            else {
-                                                tambahDataSaldo.topUp(saldoDariLuar);
-                                                System.out.println("\nSaldo berhasil di-tambahkan!");
-                                                break;
-                                            }
-                                            
-
-                                        case 2:
-                                            akun lihatDataCustomer = dataCustomer.get(nomorRekening);
-                                            lihatDataCustomer.cekSaldo();
-                                    }
-                                }
-                            }
-                        }
+                    if (!dataCustomer.containsKey(nomorRekening)){
+                        System.out.println("\nNo Rekening yang anda masukkan belum dibuat / salah");
+                        continue;
+                    }
+                    else {
+                        akun ambilNama = dataCustomer.get(nomorRekening);
+                        ambilNama.tampilkanPemilik();
                         
-                    case 2:
-                        while (true) {
-                            System.out.print("\nMasukkan No Rekening Baru: ");
-                            int noRek = scanner.nextInt();
+                        while (true){
+                            System.out.println("\n=== E-Wallet ===");
+                            System.out.println("1. Topup Saldo");
+                            System.out.println("2. Cek Saldo");
+                            System.out.println("3. Transfer antar rekening");
+                            System.out.println("4. Keluar");
+                            System.out.print(">> ");
+                            int choice = scanner.nextInt();
 
-                            scanner.nextLine();
-                            System.out.print("Masukkan nama: ");
-                            String namaBaru = scanner.nextLine();
-
-                            int saldoBaru = 0;
-                            akun akunBaru = new akun(namaBaru, saldoBaru);
-
-                            if (dataCustomer.containsKey(noRek)) {
-                                System.out.println("\nNo rekening yang anda input sudah ada di dalam sistem, silahkan ganti Nomor Rekeningnya atau langsung Log In!");
+                            if (choice == 4) {
+                                System.out.println("\nTerimakasih!");
+                                break;
+                            }
+                            else if (choice > 4 || choice < 0) {
+                                System.out.println("\nMasukkan antara menu 1 sampai menu 4!");
                                 continue;
                             }
                             else {
-                                dataCustomer.put(noRek, akunBaru);
-                                System.out.println("\nBerhasil membuat rekening a/n. '" + namaBaru + "'.");
-                                break;
+                                switch (choice) {
+                                    case 1:
+                                        System.out.print("\nMasukkan uang yang ingin di-top up: ");
+                                        int saldoDariLuar = scanner.nextInt();
+
+                                        akun tambahDataSaldo = dataCustomer.get(nomorRekening);
+                                        if (saldoDariLuar < 0) {
+                                            System.out.println("\nSaldo yang di-topup kan tidak boleh kurang dari 0 atau 0");
+                                            break;
+                                        }
+                                        else {
+                                            tambahDataSaldo.topUp(saldoDariLuar);
+                                            System.out.println("\nSaldo berhasil di-tambahkan!");
+                                            break;
+                                        }
+                                        
+
+                                    case 2:
+                                        akun lihatDataCustomer = dataCustomer.get(nomorRekening);
+                                        lihatDataCustomer.cekSaldo();
+                                }
                             }
+                            
                         }
+                    }
+                }
                         
+                else if (opsi == 2) {
+                    System.out.print("\nMasukkan No Rekening Baru: ");
+                    int noRek = scanner.nextInt();
+
+                    scanner.nextLine();
+                    System.out.print("Masukkan nama: ");
+                    String namaBaru = scanner.nextLine();
+
+                    int saldoBaru = 0;
+                    akun akunBaru = new akun(namaBaru, saldoBaru);
+
+                    if (dataCustomer.containsKey(noRek)) {
+                        System.out.println("\nNo rekening yang anda input sudah ada di dalam sistem, silahkan ganti Nomor Rekeningnya atau langsung Log In!");
+                        continue;
+                    }
+                    else {
+                        dataCustomer.put(noRek, akunBaru);
+                        System.out.println("\nBerhasil membuat rekening a/n. '" + namaBaru + "'.");
+                        
+                    }
                         
                 }
             }
