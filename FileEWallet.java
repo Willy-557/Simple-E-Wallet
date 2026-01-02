@@ -9,25 +9,24 @@ import java.util.Scanner;
 import java.util.HashMap;
 
 class akun {
-            String namaPemilik;
-            double saldoPemilik;
+    String namaPemilik;
+    double saldoPemilik;
 
-            public akun(String namaPemilik, double saldoPemilik) {
-                this.namaPemilik = namaPemilik;
-                this.saldoPemilik = saldoPemilik;
+    public akun(String namaPemilik, int saldoPemilik) {
+        this.namaPemilik = namaPemilik;
+        this.saldoPemilik = saldoPemilik;
 
-            }
+    }
 
-            void cekSaldo() {
-                System.out.println("Nama Rekening : " + this.namaPemilik);
-                System.out.println("Saldo Rekening : " + this.saldoPemilik);
-            }
+    void cekSaldo() {
+        System.out.println("Nama Rekening : " + this.namaPemilik);
+        System.out.println("Saldo Rekening : " + this.saldoPemilik);
+    }
 
-            // int topUp (double jumlah){
-            //     double saldoPemilik = saldoPemilik + jumlah;
-            //     return saldoPemilik;
-            // }
-        }
+    public void topUp (int jumlah){
+        this.saldoPemilik += jumlah;
+    }
+}
 
 public class FileEWallet {
     public static void main(String[] args) {
@@ -56,7 +55,7 @@ public class FileEWallet {
                         int nomorRekening = scanner.nextInt();
 
                         if (!dataCustomer.containsKey(nomorRekening)){
-                            System.out.println("\nNo Rekening yang anda masukkan belum dibuat, silahkan buat terlebih dahulu!");
+                            System.out.println("\nNo Rekening yang anda masukkan belum dibuat / salah");
                             break;
                         }
                         else {
@@ -80,10 +79,14 @@ public class FileEWallet {
                                 else {
                                     switch (choice) {
                                         case 1:
-                                            
+                                            System.out.print("Masukkan uang yang ingin di-top up: ");
+                                            int saldoDariLuar = scanner.nextInt();
+
+                                            akun tambahDataSaldo = dataCustomer.get(nomorRekening);
+                                            tambahDataSaldo.topUp(saldoDariLuar);
+                                            System.out.println("Saldo berhasil di-tambahkan!");
                                             break;
-                                    
-                                        
+            
                                     }
                                 }
                             }
