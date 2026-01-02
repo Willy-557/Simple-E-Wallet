@@ -86,7 +86,10 @@ public class FileEWallet {
                                             tambahDataSaldo.topUp(saldoDariLuar);
                                             System.out.println("Saldo berhasil di-tambahkan!");
                                             break;
-            
+
+                                        case 2:
+                                            akun lihatDataCustomer = dataCustomer.get(nomorRekening);
+                                            lihatDataCustomer.cekSaldo();
                                     }
                                 }
                             }
